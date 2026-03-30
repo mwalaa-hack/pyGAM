@@ -495,33 +495,6 @@ def test_fit_quantile_raises_ValueError(head_circumference_X_y):
     with pytest.raises(ValueError):
         ExpectileGAM().fit_quantile(X, y, max_iter=-1, quantile=0.5)
 
-def test_get_term_coef_basic():
-    """
-    Unit test for the LinearGAM `get_term_coef` functionality.
-
-    This test validates that a LinearGAM with multiple spline terms
-    can be fitted to a dataset and that the coefficients can be 
-    correctly accessed. It also ensures compatibility with datasets
-    that require multiple features for separate spline terms.
-
-    Steps:
-    1. Prepare a sample dataset with two features.
-    2. Fit a LinearGAM with two spline terms (s(0) + s(1)).
-    3. Retrieve the model coefficients and verify their shape.
-    
-    This test ensures the core functionality of the `get_term_coef`
-    method works as expected and prevents regressions in model fitting.
-    """
-    X = np.linspace(2.4, 57.6, 133).reshape(-1, 1)
-    y = np.random.randn(133)
-
-    X2 = np.hstack([X, X])
-
-    gam = LinearGAM(s(0) + s(1)).fit(X2, y)
-
-    # Access coefficients
-    coefs = gam.coef_
-    print("Coefficients:", coefs)
 
 class TestRegressions:
     def test_pvalue_invariant_to_scale(self, wage_X_y):

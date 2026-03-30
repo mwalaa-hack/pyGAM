@@ -2368,23 +2368,6 @@ class GAM(Core, MetaTermMixin, BaseEstimator):
 
         return coef_draws
 
-def get_term_coef(self, term_index):
-    """
-    Return the coefficients for a specific term.
-    
-    Parameters
-    ----------
-    term_index : int
-        Index of the term in self.terms.
-    
-    Returns
-    -------
-    np.array
-        Coefficients corresponding to the term.
-    """
-    if not self._is_fitted:
-        raise AttributeError("GAM has not been fitted. Call fit first.")
-    return self.coef_[self.terms.get_coef_indices(term_index)]
 
 class LinearGAM(GAM):
     """Linear GAM.
@@ -3064,7 +3047,7 @@ class PoissonGAM(GAM):
         )
 
 
-class GammaGAM(GAM):
+
     """Gamma GAM.
 
     This is a GAM with a Gamma error distribution, and a log link.
